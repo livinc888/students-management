@@ -3,7 +3,7 @@ import StudentTable from "./components/StudentTable";
 import StudentForm from "./components/StudentForm";
 import "./App.css";
 
-const API_URL = "https://students-backend-etr8.onrender.com/students";
+const API_URL = import.meta.env.VITE_API_URL + "/students";
 
 function App() {
   const [students, setStudents] = useState([]);
