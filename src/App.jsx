@@ -3,6 +3,8 @@ import StudentTable from "./components/StudentTable";
 import StudentForm from "./components/StudentForm";
 import "./App.css";
 
+const API_URL = "https://students-backend-etr8.onrender.com/students";
+
 function App() {
   const [students, setStudents] = useState([]);
   const [editingStudent, setEditingStudent] = useState(null);
@@ -12,13 +14,13 @@ function App() {
   }, []);
 
   const loadStudents = async () => {
-    const res = await fetch("http://localhost:3000/students");
+    const res = await fetch(API_URL);
     const data = await res.json();
     setStudents(data);
   };
 
   const addStudent = async (student) => {
-    await fetch("http://localhost:3000/students", {
+    await fetch(API_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -30,7 +32,7 @@ function App() {
   };
 
   const updateStudent = async (id, student) => {
-    await fetch(`http://localhost:3000/students/${id}`, {
+    await fetch(`${API_URL}/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -45,7 +47,7 @@ function App() {
   const deleteStudent = async (id) => {
     if (!window.confirm("Delete this student?")) return;
 
-    await fetch(`http://localhost:3000/students/${id}`, {
+    await fetch(`${API_URL}/${id}`, {
       method: "DELETE",
     });
 
@@ -54,7 +56,6 @@ function App() {
 
   return (
     <div className="container">
-
       <h1>Students Management</h1>
 
       <StudentForm
@@ -68,7 +69,6 @@ function App() {
         deleteStudent={deleteStudent}
         setEditingStudent={setEditingStudent}
       />
-
     </div>
   );
 }
