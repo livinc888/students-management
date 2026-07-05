@@ -4,15 +4,15 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 export class Student {
 
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column()
-  name: string;
+  name!: string;
 
   @Column()
-  email: string;
+  email!: string;
 
   @Column()
-  age: number;
+  age!: number;
 
 }
